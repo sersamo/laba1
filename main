@@ -1,52 +1,8 @@
 #include <iostream>
-#include <time.h>
+#include "rotationOfMatrixTriangles.h"
 
 using namespace std;
 
-void main() {
-	setlocale(LC_ALL, "Russian");
-	srand(time(NULL));
-	int size;
-	int tmp;
-	cout << "Введите размер массива" << endl;
-	cin >> size;
-	while (size % 2 == 0) {
-			cout << "Размер не соответствует условию задачи. Повторите ввод" << endl;
-			cin >> size;
-	}
-
-	int **array = new int* [size];
-	for (int i = 0; i < size; i++) {
-		array[i] = new int[size];
-	}
-	cout << "Введите массив размерностью " << size << " x " << size << endl;
-	for (int i = 0; i < size; ++i) {
-		for (int j = 0; j < size; ++j) {
-			cin >> array[i][j];
-		}
-	}
-	for (int i = 0; i < size / 2; ++i) {
-		for (int j = i; j < size - 1 - i; ++j) {
-			if (i == j || i + j == size + 1)
-				continue;
-			else {
-			tmp = array[i][j];
-			array[i][j] = array[size - j - 1][i];
-			array[size - j - 1][i] = array[size - i - 1][size - j - 1];
-			array[size - i - 1][size - j - 1] = array[j][size - i - 1];
-			array[j][size - i - 1] = tmp;
-			}
-		}
-	}
-	cout << endl << "Развернутый массив" << endl;
-	for (int i = 0; i < size ; ++i) {
-		for (int j = 0; j < size; ++j) {
-			cout << array[i][j] << " ";
-		}
-		cout << endl;
-	}
-	for (int i = 0; i < size; i++)
-		delete[] array[i];
-	delete[] array;
-	system("pause");
+int main() {
+	rotate();
 }
